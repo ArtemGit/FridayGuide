@@ -1,5 +1,7 @@
 package com.friday.guide.api.config;
 
+import com.friday.guide.api.data.entity.audit.AuditorAwareImpl;
+import com.friday.guide.api.data.entity.audit.IdentifiedNamedEntity;
 import net.sf.ehcache.config.CacheConfiguration;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +24,6 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.domain.AuditorAware;
@@ -34,9 +35,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.TransactionTemplate;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.spi.PersistenceUnitInfo;
 import javax.sql.DataSource;

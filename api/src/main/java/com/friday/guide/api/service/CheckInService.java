@@ -19,13 +19,13 @@ public class CheckInService {
     @Autowired
     private CheckInMapper checkInMapper;
 
-    /*@Transactional
+    @Transactional
     public List<CheckIn> findCheckInListHistoryForUser(Long userId) {
         if (userId != null) {
             return checkInRepository.findCheckInListHistoryForUser(userId);
         }
         return Collections.emptyList();
-    }*/
+    }
 
     @Transactional
     public CheckIn save(CheckInForm checkInForm) {

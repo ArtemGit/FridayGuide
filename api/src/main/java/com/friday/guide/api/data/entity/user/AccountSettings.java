@@ -1,25 +1,29 @@
 package com.friday.guide.api.data.entity.user;
 
 
+import com.friday.guide.api.hibernate.type.CryptStringType;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- * @Author Artem
+ * @author Artem
  */
 @Embeddable
 @Getter
 @Setter
 public class AccountSettings {
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
+    @Type(type = CryptStringType.NAME)
     private String email;
 
-    @Column(name = "mobile_phone")
+    @Column(name = "mobile_phone", nullable = false)
+    @Type(type = CryptStringType.NAME)
     private String mobilePhone;
 }

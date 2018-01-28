@@ -1,5 +1,6 @@
 package com.friday.guide.api.data.entity.user;
 
+import com.friday.guide.api.data.entity.base.ActivatedEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,13 +16,12 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Table(name = "customer")
-public class CustomerUserAccount {
+public class CustomerUserAccount extends ActivatedEntity {
 
-    @Column(name = "token")
+    @Column(name = "token", nullable = false)
     private String token;
 
     @Embedded
     private AccountSettings accountSettings;
-
 
 }

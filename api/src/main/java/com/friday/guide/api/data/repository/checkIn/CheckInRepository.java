@@ -13,13 +13,13 @@ import java.util.List;
 @Repository
 public interface CheckInRepository extends FilterRepository<CheckIn> {
 
-    /*@Query("select ch from #{#entityName} ch where account.id = ?1")
-    List<CheckIn> findCheckInListHistoryForUser(Long userId);*/
+    @Query("select ch from #{#entityName} ch where сh.account.id = ?1")
+    List<CheckIn> findCheckInListHistoryForUser(Long userId);
 
     @Override
     @Caching(
             evict = {
-                    @CacheEvict(value = Cache.CHECK_INS, key = "#p0.id")
+                    @CacheEvict(value = Cache.CHECK_INS, key = "#p0.account.id")
             }
     )
     <S extends CheckIn> S save(S entity);
@@ -27,7 +27,7 @@ public interface CheckInRepository extends FilterRepository<CheckIn> {
     @Override
     @Caching(
             evict = {
-                    @CacheEvict(value = Cache.CHECK_INS, key = "#p0.id")
+                    @CacheEvict(value = Cache.CHECK_INS, key = "#p0.account.id")
             }
     )
     void delete(CheckIn entity);

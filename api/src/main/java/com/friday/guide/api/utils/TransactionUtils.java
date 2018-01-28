@@ -3,9 +3,6 @@ package com.friday.guide.api.utils;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-/**
- * @author Vitaliy Dach
- */
 public class TransactionUtils {
 
     public static void afterTransaction(Runnable what) {

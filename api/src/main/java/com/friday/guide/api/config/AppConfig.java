@@ -1,5 +1,6 @@
 package com.friday.guide.api.config;
 
+import com.friday.guide.api.hibernate.type.CryptStringType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -9,6 +10,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.Executor;
 
 @Configuration
@@ -32,6 +34,14 @@ public class AppConfig {
 
     @Value("${task.scheduler.pool.size:20}")
     private Integer taskSchedulerPoolSize;
+
+    @Value("#{'${app.crypt.key}'.getBytes(T(java.nio.charset.StandardCharsets).UTF_8)}")
+    private byte[] cryptKey;
+
+    @PostConstruct
+    private void initCryptKey() {
+        CryptStringType.setCryptKey(cryptKey);
+    }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {

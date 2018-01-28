@@ -1,7 +1,9 @@
 package com.friday.guide.api.data.entity.chekIn;
 
 
-import com.friday.guide.api.data.entity.base.BaseEntity;
+import com.friday.guide.api.data.entity.audit.AuditedEntity;
+import com.friday.guide.api.data.entity.user.CustomerUserAccount;
+import com.friday.guide.api.hibernate.type.CryptStringType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.*;
@@ -23,9 +25,10 @@ import javax.persistence.Table;
                 @Index(columnList = "longitude, latitude")
         })
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class CheckIn extends BaseEntity {
+public class CheckIn extends AuditedEntity {
 
     @Column(name = "ip")
+    @Type(type = CryptStringType.NAME)
     private String ip;
 
     @Column(name = "hostname")
@@ -41,13 +44,15 @@ public class CheckIn extends BaseEntity {
     private String country;
 
     @Column(name = "longitude")
+    @Type(type = CryptStringType.NAME)
     private String longitude;
 
     @Column(name = "latitude")
+    @Type(type = CryptStringType.NAME)
     private String latitude;
 
-    /*@ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @Column(name = "account_id", nullable = false)
-    private CustomerAccount account;*/
+    private CustomerUserAccount account;
 
 }
